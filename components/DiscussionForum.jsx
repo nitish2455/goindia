@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 
@@ -8,7 +9,8 @@ const DiscussionForum = () => {
         <div className='  w-[600px] shadow-2xl mx-5 px-5 bg-gray-100'>
             <div className='w-full py-3 flex justify-between '>
                 <div className='flex gap-3 '>
-            <img src="img_avatar.png" alt="Avatar" className='border border-black rounded-full w-[35px] h-[35px] px-2'/>
+            <Image src="/card-top.jpg" alt="Avatar" width={40}
+          height={30} className='border border-black rounded-full w-[35px] h-[35px] px-2'/>
             <p className='text-black'>Lorem ipsum</p>
             <p className='bg-blue-700 rounded-full px-3 h-[25px]'>section 2</p>
                 </div>
