@@ -10,7 +10,7 @@ const MarketStories = () => {
   <Image className="w-full" src="/project.svg" width={363}
           height={100} alt="project"/>
   <div className=" ">
-    <div className="font-bold text-xl mb-2 ">You're almost done.</div>
+    <div className="font-bold text-xl mb-2 ">You are almost done.</div>
     <p className=" text-base">
     Please follow the steps to configure your Project and deploy it.    </p>
   </div>
