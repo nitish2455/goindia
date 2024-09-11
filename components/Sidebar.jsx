@@ -49,7 +49,7 @@ const Sidebar = () => {
     return classNames(
       "flex items-center cursor-pointer hover:bg-light-lighter rounded w-full overflow-hidden whitespace-nowrap",
       {
-        ["bg-light-lighter"]: activeMenu.id === menu.id,
+        ["bg-light-lighter"]: activeMenu && activeMenu.id === menu.id,
       }
     );
   };
@@ -69,7 +69,7 @@ const Sidebar = () => {
       onMouseLeave={onMouseOver}
       style={{ transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s " }}
     >
-      <div className="flex flex-col  ">
+      <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4 text-white">
             <LogoIcon />

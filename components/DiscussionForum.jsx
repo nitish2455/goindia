@@ -1,45 +1,155 @@
-import Image from 'next/image'
-import React from 'react'
+import React, { useState } from "react";
+import Confetti from "react-confetti";
 
+const DeployComponent = () => {
+  const [formData, setFormData] = useState({
+    commands: "",
+    port: "",
+    arguments: "",
+    envVariables: "",
+    pricing: "",
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedPricing, setSelectedPricing] = useState("");
 
-const DiscussionForum = () => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handlePricingSelection = (pricing) => {
+    setSelectedPricing(pricing);
+    setFormData({ ...formData, pricing });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { commands, port, arguements, envVariables, pricing } = formData;
+
+    if (commands && port && arguments && envVariables && pricing) {
+      setIsSubmitted(true);
+    } else {
+      alert("All fields are required!");
+    }
+  };
+
   return (
-    <div className='z-10 overflow-x-auto'>
+    <div className="flex justify-center items-center h-screen bg-[#0C1015] max-w-full">
+      {isSubmitted && <Confetti />}
+      <div className="border p-8 rounded-md shadow-md ">
+        <h1 className="text-2xl font-bold mb-4">Configure Deployment (optional)</h1>
+        <p className="mb-6">Please fill out the required fields and select a pricing configuration.</p>
         
-        <div className='  w-[600px] shadow-2xl mx-5 px-5 bg-gray-100'>
-            <div className='w-full py-3 flex justify-between '>
-                <div className='flex gap-3 '>
-            <Image src="/card-top.jpg" alt="Avatar" width={40}
-          height={30} className='border border-black rounded-full w-[35px] h-[35px] px-2'/>
-            <p className='text-black'>Lorem ipsum</p>
-            <p className='bg-blue-700 rounded-full px-3 h-[25px]'>section 2</p>
-                </div>
-            <div>
-                <p className='text-black'>2 min ago</p>
-            </div>
-            </div>
-             <p className='text-black '>Lorem ipsum is a simple dummy text of the printing and typesetting industry. lorem ipsum is </p>
-          <div className='flex justify-between mx-4 py-2'>
-            <div className='flex gap-1'>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
-            <p className='text-black'>2k</p>
-            </div>
-            <div className='flex gap-1'>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
-            <p className='text-black'>2k comments</p>
-            </div>
-            <div className='flex gap-1'>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg>
-            <p className='text-black'>2k</p>
-            </div>
-            <div className='flex gap-1'>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M720-80q-50 0-85-35t-35-85q0-7 1-14.5t3-13.5L322-392q-17 15-38 23.5t-44 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q23 0 44 8.5t38 23.5l282-164q-2-6-3-13.5t-1-14.5q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-44-8.5T638-672L356-508q2 6 3 13.5t1 14.5q0 7-1 14.5t-3 13.5l282 164q17-15 38-23.5t44-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-640q17 0 28.5-11.5T760-760q0-17-11.5-28.5T720-800q-17 0-28.5 11.5T680-760q0 17 11.5 28.5T720-720ZM240-440q17 0 28.5-11.5T280-480q0-17-11.5-28.5T240-520q-17 0-28.5 11.5T200-480q0 17 11.5 28.5T240-440Zm480 280q17 0 28.5-11.5T760-200q0-17-11.5-28.5T720-240q-17 0-28.5 11.5T680-200q0 17 11.5 28.5T720-160Zm0-600ZM240-480Zm480 280Z"/></svg>
-            <p className='text-black'>Share</p>
-            </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Commands</label>
+            <input
+              type="text"
+              placeholder="My-deployment"
+              name="commands"
+              className="border w-full p-2 rounded bg-[#0D1014]"
+              value={formData.commands}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Port</label>
+            <input
+              type="text"
+              placeholder="8000"
+              name="port"
+              className="border w-full p-2 rounded bg-[#0D1014]"
+              value={formData.port}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Arguments</label>
+            <input
+              type="text"
+              placeholder="My-deployment"
+              name="arguments"
+              className="border w-full p-2 rounded bg-[#0D1014]"
+              value={formData.arguments}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1 ">Environment Variables</label>
+            <input
+              type="text"
+              placeholder="ENV_NAME=ENV_VALUE"
+              name="envVariables"
+              className="border w-full p-2 rounded bg-[#0D1014]"
+              value={formData.envVariables}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2">Pricing Configuration</label>
+            <div className="flex justify-between gap-3">
+  {[
+    { name: "Micro", ram: "1 GB RAM", vcpu: "1 vCPU", textColor: "#962D00" },
+    { name: "Small", ram: "2 GB RAM", vcpu: "2 vCPU", textColor: "#853BCE" },
+    { name: "Large", ram: "4 GB RAM", vcpu: "4 vCPU", textColor: "#1A73E8" },
+  ].map((pricing) => (
+    <div
+      key={pricing.name}
+      className={`p-4 w-1/3 text-center border cursor-pointer rounded-md ${
+        selectedPricing === pricing.name ? "border-[#1A73E8]" : "border-gray-300"
+      }`}
+      onClick={() => handlePricingSelection(pricing.name)}
+      style={{ backgroundColor: "#0C1015" }} 
+    >
+      <h3 className="font-bold mb-2" style={{ backgroundColor: pricing.textColor, color: "white", padding: "4px 8px", borderRadius: "4px" }}>
+        {pricing.name}
+      </h3>
+      <p className="text-sm text-white">{pricing.ram}</p>
+      <p className="text-sm text-white">{pricing.vcpu}</p>
+    </div>
+  ))}
+</div>
+
+</div>
+
+          <button
+            type="submit"
+            className=" text-white w-full p-3 rounded-md"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(26, 115, 232, 0.05) 0%, rgba(240, 40, 73, 0.05) 54%, rgba(133, 59, 206, 0.05) 98.5%)",
+              border: "1px solid #1A73E8", 
+            }}
+          >
+            Deploy
+          </button>
+        </form>
+      </div>
+
+      {isSubmitted && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-md text-center">
+            <h2 className="text-2xl font-bold mb-4 text-black">Successfully Deployed!</h2>
+            <p className="text-black">Your configuration has been successfully deployed.</p>
+            <button
+              onClick={() => setIsSubmitted(false)}
+              className="mt-4 bg-green-500 text-white p-2 rounded-md"
+            >
+              Close
+            </button>
           </div>
         </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default DiscussionForum
+export default DeployComponent;

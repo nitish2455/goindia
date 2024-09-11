@@ -1,25 +1,21 @@
 import DiscussionForum from "../components/DiscussionForum";
 import Layout from "../components/Layout";
-import MarketStories from "../components/MarketStories";
+import Deployment from "../components/Deployment";
+import Link from "next/link"; 
 
 export default function Home() {
-  return <Layout>
-    <div className="flex gap-4 ">
-    <div className="space-y-3 hidden md:block">
-    <h1 className='text-3xl text-red-600 font-bold'>Discussion Forum</h1>
-    <DiscussionForum/>
-    <DiscussionForum/>
-    <DiscussionForum/>
-    <DiscussionForum/>
-
-    </div>
-    <div className="space-y-3">
-    <h1 className='text-3xl text-red-600 font-bold'>Market Stories</h1>
-      <MarketStories/>
-      <MarketStories/>
-      <MarketStories/>
-    </div>
-
-    </div>
-  </Layout>;
+  return (
+    <Layout>
+      <div className="flex flex-col gap-4">
+        <h1 className="text-5xl ">Home</h1>
+        <div className="mt-4">
+          <Link href="/services-new">
+            <a className="bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition">
+              Go to Services New
+            </a>
+          </Link>
+        </div>
+      </div>
+    </Layout>
+  );
 }
